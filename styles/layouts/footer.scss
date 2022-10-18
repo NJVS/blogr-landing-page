@@ -1,0 +1,55 @@
+@use '../utils/mixins.scss' as *;
+
+#root > footer {
+    background-color: var(--c-neutral-600);
+    border-top-right-radius: var(--g-border-radius);
+
+    .container {
+        padding: 4rem 0 2rem;
+        nav {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin-bottom: 2rem;
+
+            @include breakpoint(mobile, lg) {
+                grid-template-columns: repeat(3, 1fr);
+
+                .nav-logo {
+                    grid-column: 1/4;
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 2rem;
+                }
+                .nav-list {
+                    text-align: center;
+                }
+            }
+
+            @include breakpoint(mobile, sm) {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+
+                .nav-logo {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        .attribution {
+            color: var(--c-neutral-300);
+            font-family: var(--ff-secondary);
+            font-size: var(--fs-100);
+            text-align: center;
+            a {
+                color: var(--c-red-400);
+                font-family: var(--ff-primary);
+                font-weight: 600;
+                transition: all 0.3s ease;
+
+                @include hover {
+                    color: var(--c-red-400);
+                }
+            }
+        }
+    }
+}

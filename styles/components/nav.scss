@@ -1,0 +1,214 @@
+@use '../utils/mixins.scss' as *;
+
+.nav-list {
+	a {
+		text-decoration: none;
+	}
+
+	// Nav Title
+	.nav_title {
+		margin-bottom: 1.25rem;
+		color: var(--c-neutral-100);
+		font-family: var(--ff-secondary);
+	}
+
+	// Default Nav Item
+	.nav_item:not(.btn) > a{
+		color: var(--c-neutral-100);
+		font-family: var(--ff-secondary);
+		font-size: var(--fs-300);
+		font-weight: 500;
+		opacity: 0.75;
+		transition: all 0.3s ease;
+
+		&.fw-400 {
+			font-weight: 400;
+		}
+
+		@include hover {
+			opacity: 1;
+		}
+		
+		@include breakpoint(mobile, md) {
+			// not footer nav
+			&:not(.fw-400) {
+				color: var(--c-neutral-600);
+				opacity: 1;
+			}
+		}
+	}
+	
+	// Dropdown Nav
+	.nav_item.dropdown {
+		// dropdown toggler
+		a.dropdown_toggler {
+			// underline only on text
+			span { 
+				position: relative; 
+				// toggler underline
+				&::after {
+					content: '';
+					position: absolute;
+					bottom: -4px;
+					left: 50%;
+					translate: -50% 0;
+					width: 0%;
+					height: 2px;
+					background-color: var(--c-neutral-100);
+					transition: width 0.2s ease;
+				}
+			}
+			@include hover {
+				span::after {
+					width: 100%;
+				}
+			}
+
+			// trigger icon
+			svg {
+				margin-left: 0.25rem;
+				transition: all 0.3s ease;
+				@include breakpoint(mobile, md) {
+					path {
+						stroke: var(--c-red-400);
+					}
+				}
+			}
+		}
+
+		// dropdown menu
+		ul.dropdown_menu {
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+			border-radius: 0.5rem;
+			font-family: var(--ff-secondary);
+			transition: all 0.3s ease;
+
+			@include breakpoint(mobile, md, min) {
+				position: absolute;
+				top: 100%;
+				translate: -15% 0;
+				min-width: 10.5rem;
+				padding: 1.625rem;
+				background-color: var(--c-neutral-100);
+
+				// hide
+				visibility: hidden;
+				opacity: 0;
+
+				.dropdown_item a {
+					display: block;
+					width: 100%;
+					color: var(--c-neutral-500);
+					font-weight: 500;
+					transition: color 0.3s ease;
+
+					@include hover {
+						color: var(--c-neutral-600);
+					}
+				}
+			}
+			@include breakpoint(mobile, md) {
+				position: relative;
+				translate: unset;
+				width: 100%;
+				max-height: 0px;				
+				padding: 0;
+				background-color: var(--c-neutral-300);
+				text-align: center;
+				overflow: hidden;
+
+				.dropdown_item a {
+					color: var(--c-neutral-500);
+				}
+			}
+		}
+
+		// dropdown active state
+		&.active {
+			@include breakpoint(mobile, md, min) {
+				a.dropdown_toggler {
+					opacity: 1;
+
+					span::after {
+						width: 100%;
+					}
+
+					svg {
+						rotate: 180deg;
+					}
+				}
+				ul.dropdown_menu {
+					visibility: visible;
+					opacity: 1;
+				}
+			}
+
+			@include breakpoint(mobile, md) {
+				a.dropdown_toggler {
+					// margin-bottom: 1rem;
+					span {
+						opacity: 0.8;
+					}
+	
+					svg {
+						rotate: 180deg;
+					}
+				}
+				ul.dropdown_menu {
+					// max-height: 500px;	
+					margin-top: 1rem;
+					padding: 1.625rem 0;
+				}
+			}
+		}
+	}
+
+	// Button Nav
+	.nav_item.btn {
+		a {
+			display: flex;
+			justify-content: center;
+			width: 8.625rem;
+			padding: 1rem 0;
+			background-color: black;
+			border-radius: 50vh;
+			font-family: var(--ff-secondary);
+			font-weight: 500;
+			line-height: 1;
+		}
+		// button solid
+		&.btn-solid a {
+			background-color: var(--c-neutral-100);
+			border: 2px solid var(--c-neutral-100);
+			color: var(--c-red-400);
+			transition: all 0.3s ease;
+
+			@include hover {
+				background-color: var(--c-red-300);
+				border-color: var(--c-red-300);
+				color: var(--c-neutral-100);
+			}
+		}
+		// button outline
+		&.btn-outline a {
+			background-color: transparent;
+			border: 2px solid var(--c-neutral-100);
+			color: var(--c-neutral-100);
+			transition: all 0.3s ease;
+			@include hover {
+				background-color: var(--c-neutral-100);
+				color: var(--c-red-400);
+			}
+		}
+		// button themed (only on breakpoint mobile md)
+		&.btn-md-themed a{
+			border: none !important;
+			@include breakpoint(mobile, md) {
+				background: var(--c-gradient-header);
+				color: var(--c-neutral-100);
+			}
+		}
+	}
+}

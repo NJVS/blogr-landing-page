@@ -1,0 +1,47 @@
+@use '../utils/mixins.scss' as *;
+
+:root {
+	// FONTS
+	--ff-primary: 'Overpass', sans-serif; // 300 600
+	--ff-secondary: 'Ubuntu', sans-serif; // 400 500 700
+	--fs-100: 0.785rem; // 11
+	--fs-200: 0.875rem; // 14
+	--fs-300: 1rem; // 16
+	--fs-400: 1.125rem; // 18
+	--fs-500: 1.25rem; // 20
+	--fs-600: 1.5rem; // 24
+	--fs-700: 1.75rem; // 28
+	--fs-800: 2.25rem; // 36
+	--fs-900: 2.5rem; // 40
+
+	// Primary
+	--c-red-300: hsl(355, 100%, 74%);
+	--c-red-400: hsl(356, 100%, 66%);
+	--c-blue-600: hsl(208, 49%, 24%);
+
+	// Neutral
+	--c-neutral-100: hsl(0, 0%, 100%);
+	--c-neutral-200: hsl(0, 0%, 98%);
+	--c-neutral-300: hsl(0, 0%, 93%);
+	--c-neutral-400: hsl(240, 2%, 79%);
+	--c-neutral-500: hsl(207, 13%, 34%);
+	--c-neutral-600: hsl(240, 10%, 16%);
+
+	// Gradient
+	--c-gradient-header: linear-gradient(100deg, hsl(13, 100%, 72%), hsl(353, 100%, 62%));
+	--c-gradient-header-mobile: linear-gradient(190deg, hsl(13, 100%, 72%), hsl(353, 100%, 62%));
+	--c-gradient-infras: linear-gradient(to right, hsl(237, 17%, 21%), hsl(237, 23%, 32%));
+	--c-gradient-infras-mobile: linear-gradient(to bottom, hsl(237, 17%, 21%), hsl(237, 23%, 32%));
+
+	// Shadow
+	--c-shadow-100: hsla(0, 0%, 0%, 0.3);
+
+	// Others
+	--g-border-radius: 15vh;
+	--g-width: min(1110px, 90%);
+
+	@include breakpoint(mobile, lg) {
+		// Others
+		--g-border-radius: 10vh;
+	}
+}

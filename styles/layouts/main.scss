@@ -1,0 +1,181 @@
+@use '../utils/mixins.scss' as *;
+
+#root>main {
+    section {
+        position: relative;
+        padding: 11rem 0 20rem;
+
+        // paddings
+        &.overview {
+            padding: 11rem 0 20rem;
+        }
+
+        &.more {
+            padding: 15rem 0 16rem;
+        }
+
+        &.infrastructure {
+            padding: 7rem 0;
+        }
+
+        @include breakpoint(mobile, lg) {
+            &.more {
+                padding: 10rem 0;
+            }
+
+            &.infrastructure {
+                padding: 15rem 0 7rem
+            }
+        }
+
+        @include breakpoint(mobile, sm) {
+            &.overview {
+                padding: 8rem 0 20rem
+            }
+
+            &.infrastructure {
+                padding: 10rem 0 7rem;
+            }
+        }
+
+
+        .section_title {
+            margin-bottom: 4rem;
+            color: var(--c-neutral-600);
+            font-family: var(--ff-primary);
+            font-size: var(--fs-800);
+            text-align: center;
+
+            @include breakpoint(mobile, sm) {
+                font-size: var(--fs-700);
+            }
+        }
+
+        .section_content {
+            display: flex;
+            gap: 3.75rem;
+
+            >* {
+                flex-grow: 1;
+                flex-basis: 0;
+                min-width: 0;
+            }
+        }
+
+
+        // section content flex direction on tablet
+        @include breakpoint(mobile, lg) {
+            &:not(.infrastructure) {
+                .section_content {
+                    display: flex;
+                }
+            }
+
+            &.overview {
+                .section_content {
+                    flex-direction: column-reverse;
+                }
+            }
+
+            &.more,
+            &.infrastructure {
+                .section_content {
+                    flex-direction: column;
+                }
+            }
+        }
+
+        // infrastructure section background
+        &.infrastructure {
+            background: url(../assets/backgrounds/bg-pattern-circles.svg), var(--c-gradient-infras);
+            background-repeat: no-repeat;
+            background-size: 855px auto, auto;
+            background-position: calc(50% - 408px) -27rem, center;
+            border-radius: 0 var(--g-border-radius) 0 var(--g-border-radius);
+
+            // background size and position on mobile md and sm
+            @include breakpoint(mobile, md) {
+                background: url(../assets/backgrounds/bg-pattern-circles.svg), var(--c-gradient-infras-mobile);
+                background-repeat: no-repeat;
+                background-size: 631px, auto;
+                background-position: 50% -16rem, center;
+            }
+
+            // infrastructure article on mobile lg
+            @include breakpoint(mobile, lg) {
+                article {
+                    max-width: 450px;
+                    margin: auto;
+                    text-align: center;
+                }
+            }
+        }
+
+        // section's illustrations/figures/pictures
+        picture {
+            position: absolute;
+            top: 50%;
+            translate: 0 -50%;
+
+            img {
+                width: 100%;
+                max-width: unset;
+            }
+
+            @include breakpoint(mobile, lg) {
+                position: relative;
+                top: unset;
+                translate: unset;
+
+                img {
+                    translate: unset !important;
+                }
+            }
+        }
+
+        &.overview {
+            picture {
+                width: min(925px, 90%);
+                height: auto;
+
+                img {
+                    translate: 3rem 0;
+
+                    @include breakpoint(mobile, sm) {
+                        scale: 1.2;
+                    }
+                }
+            }
+        }
+
+        &.more picture img {
+            translate: -27.5rem 0;
+
+            @include breakpoint(mobile, sm) {
+                scale: 1.6;
+            }
+        }
+
+        &.infrastructure picture {
+            width: min(552px, 50%);
+
+            img {
+                scale: 0.95;
+                translate: -3rem 1.25rem;
+            }
+
+            @include breakpoint(mobile, lg) {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                translate: -50% -95%;
+                width: min(552px, 100%);
+            }
+
+            @include breakpoint(mobile, sm) {
+                translate: -50% -110%;
+            }
+        }
+
+    }
+}

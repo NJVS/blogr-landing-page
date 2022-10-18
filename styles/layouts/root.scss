@@ -1,0 +1,19 @@
+
+#root {
+	padding: 0;
+	width: 100%;
+	height: auto;
+	background-color: var(--c-neutral-200);
+	overflow: hidden;
+
+	> * .container {
+		width: var(--g-width) !important;
+		height: auto;
+		margin: auto;
+	}
+	> * .container-fluid {
+		width: 100% !important;
+		height: auto;
+		margin: unset;
+	}
+}

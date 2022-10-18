@@ -1,0 +1,74 @@
+@use '../utils/mixins.scss' as *;
+
+article {
+    display: flex;
+    flex-direction: column;
+    gap: 3.75rem;
+
+    @include breakpoint(mobile, lg) {
+        flex-direction: row;
+    }
+
+    @include breakpoint(mobile, sm) {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .group {
+        flex-grow: 1;
+        flex-basis: 0;
+        min-width: 0;
+        font-family: var(--ff-primary);
+
+        .group_title {
+            margin-bottom: 1.125rem;
+            color: var(--c-neutral-600);
+
+            &:is(h3) {
+                font-size: var(--fs-700);
+            }
+
+            &:is(h2) {
+                font-size: var(--fs-800);
+            }
+
+            @include breakpoint(mobile, lg) {
+                span::before {
+                    content: '\a';
+                    white-space: pre;
+                }
+            }
+
+            @include breakpoint(mobile, sm) {
+                &:is(h2) {
+                    font-size: var(--fs-700);
+                }
+
+                span::before {
+                    content: '';
+                }
+                &.sm-800 {
+                    font-size: var(--fs-800);
+                }
+            }
+        }
+
+        .group_desc {
+            font-size: var(--fs-300);
+            word-spacing: 3px;
+            line-height: 1.5;
+
+        }
+
+        // color scheme for infrastructure section
+        &.dark {
+            .group_title {
+                color: var(--c-neutral-100);
+            }
+
+            .group_desc {
+                color: var(--c-neutral-400);
+            }
+        }
+    }
+}
